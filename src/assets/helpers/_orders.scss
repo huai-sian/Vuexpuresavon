@@ -1,0 +1,36 @@
+.unpaid{
+    color:red;
+}
+.ispaid{
+    color:green;
+}
+#openOrModal .modal-header{
+    background-color: #34495E;
+}
+#openOrModal .btn-close{
+    background-color: #34495E;
+    color:white;
+}
+#openOrModal .btn-close:hover{
+    background-color: #85929E;
+}
+.btn-open{
+    background-color: #34495E;
+    color:white;
+}
+.btn-open:hover{
+    background-color: #85929E;
+    color: white;
+}
+.btn-delete{
+    background-color: #85929E;
+    color: white;  
+}
+.btn-delete:hover{
+    background-color: #34495E;
+    color:white;
+}
+/* #openOrModal .modal-dialog{
+//     margin-left:400px;
+//     margin-right: 400px;
+} */
