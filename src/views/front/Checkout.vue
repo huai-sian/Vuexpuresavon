@@ -6,7 +6,7 @@
         <div class='container checkOut'>
             <h3>{{ $t("Checkout.orderInfo") }}</h3>
             <div class="row listRow">
-                <div class='col-md-6 col-12'>
+                <div class='col-md-6 col-12' :class="{ 'typo__center': order.is_paid }">
                     <ul class='order'>
                         <p>{{ $t("Checkout.orderDate") }} - {{order.create_at | date}}</p>
                         <p>{{ $t("Checkout.orderid") }} - <span class="orderid">{{order.id}}</span></p>
@@ -30,8 +30,6 @@
                             </div>
                         </li>
                     </ul>
-                </div>
-                <div class="col-md-6 col-12">
                     <div class='order_info'>
                         <table class='table'>
                             <tr>
@@ -62,11 +60,70 @@
                             </tr>
                         </table>
                         <div class='endpay'>
-                            <button v-if='!order.is_paid' @click.prevent='completePay'>{{ $t("Checkout.go_paid") }}</button>
-                            <button v-else @click.prevent="$router.push('/productlist')">{{ $t("Checkout.backtoshop") }}</button>
+                            <button v-if='order.is_paid' @click.prevent="$router.push('/productlist')">{{ $t("Checkout.backtoshop") }}</button>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-12" v-if="!order.is_paid">
+                  <div class="order_info">
+                    <h3 class="h3">信用卡資訊</h3>
+                    <div class="d-flex card_support">
+                      <p>支援使用卡種類</p>
+                      <span class="d-flex">
+                        <div class="imagefr"><img src="../../assets/images/visa.svg" alt=""></div>
+                        <div class="imagefr"><img src="../../assets/images/mastercard.svg" alt=""></div>
+                        <div class="imagefr"><img src="../../assets/images/jcb.svg" alt=""></div>
+                      </span>
+                    </div>
+                    <ValidationObserver v-slot="{ handleSubmit }">
+                    <form @submit.prevent="handleSubmit(completePay)" class="form_card">
+                      <div class="form-group">
+                        <label for="card_number">{{ $t("Checkout.card_number") }}<span class='marker'>*</span>
+                        </label>
+                        <ValidationProvider rules='required|cardnum' v-slot='{ errors , classes }'>
+                          <div :class="classes">
+                            <input type="text" class="form-control" name="card_number" id="card_number" placeholder="xxxx-xxxx-xxxx-xxxx" v-model="cardmeta.num">
+                            <span class="text-danger">{{ errors[0] }}</span>
+                          </div>
+                        </ValidationProvider>
+                      </div>
+                      <div class="form-group">
+                        <label for="card_owner">{{ $t("Checkout.card_owner") }}<span class='marker'>*</span>
+                        </label>
+                        <ValidationProvider rules='required' v-slot='{ errors , classes }'>
+                          <div :class="classes">
+                            <input type="text" class="form-control" name="card_owner" id="card_owner" v-model="cardmeta.owner">
+                            <span class="text-danger">{{ errors[0] }}</span>
+                          </div>
+                        </ValidationProvider>
+                      </div>
+                      <div class="form-group">
+                        <label for="verify_num">{{ $t("Checkout.verify_num") }}<span class='marker'>*</span>
+                        </label>
+                        <ValidationProvider rules='required' v-slot='{ errors , classes }'>
+                          <div :class="classes">
+                            <input type="text" class="form-control" name="verify_num" id="verify_num" maxlength="3" v-model="cardmeta.verify">
+                            <span class="text-danger">{{ errors[0] }}</span>
+                          </div>
+                        </ValidationProvider>
+                      </div>
+                      <div class="form-group">
+                        <label for="expired">{{ $t("Checkout.expired") }}<span class='marker'>*</span>
+                        </label>
+                        <ValidationProvider rules='required|date' v-slot='{ errors , classes }'>
+                          <div :class="classes">
+                            <input type="text" class="form-control" name="expired" id="expired" max-length="5" placeholder="MM/YY" v-model="cardmeta.expiry">
+                            <span class="text-danger">{{ errors[0] }}</span>
+                          </div>
+                        </ValidationProvider>
+                      </div>
+                      <div class='endpay'>
+                        <button v-if='!order.is_paid' type="submit">{{ $t("Checkout.go_paid") }}</button>
+                      </div>
+                    </form>
+                    </ValidationObserver>
+                </div>
+              </div>
             </div>
         </div>
         <div class="modal fade" id="endPayModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -103,6 +160,12 @@ export default {
       orderId: '',
       order: {
         user: {}
+      },
+      cardmeta: {
+        num: '',
+        owner: '',
+        verify: '',
+        expiry: ''
       }
     }
   },

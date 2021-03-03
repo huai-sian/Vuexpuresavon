@@ -72,6 +72,7 @@
         border-radius: $radius;
         font-size: 1.1rem;
         letter-spacing: 1px;
+        animation: btn_animation  1s infinite;
         cursor: pointer;
         &:hover {
           background-color: $secondary_color;

@@ -72,7 +72,8 @@ input::-webkit-inner-spin-button {
         .btn-minus {
           border: 1px solid $primary_color;
           color: $primary_color;
-          padding: 4px 8px;
+          padding: 6px 8px;
+          padding-top: 7px;
           border-radius: 4px 0 0 4px;
           outline: none;
           background: transparent;
@@ -86,7 +87,8 @@ input::-webkit-inner-spin-button {
         }
         .btn-plus {
           border: 1px solid $primary_color;
-          padding: 4px 8px;
+          padding: 6px 8px;
+          padding-top: 7px;
           border-radius: 0 4px 4px 0;
           color: $primary_color;
           outline: none;

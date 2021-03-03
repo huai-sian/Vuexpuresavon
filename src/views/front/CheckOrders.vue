@@ -51,7 +51,7 @@
             <div class='gocheck'>
               <button type="button" class="btn-back" @click.prevent="$router.push('/productlist')"><i>{{ $t("Checkorder.back_btn") }}</i></button>
               <button type="button" class="btn-check" v-if="clicked===true" @click.prevent="goNextPage"><i></i>{{ $t("Checkorder.next") }}</button>
-              <button type="button" class="btn-check btn_confirmcart" v-else @click.prevent="confirmCart" :class="{'doubleclick':preventDClicked === true}"><i></i>{{ $t("Checkorder.next_btn") }}</button>
+              <button type="button" class="btn-check btn_confirmcart" v-else @click.prevent="confirmCart"><i></i>{{ $t("Checkorder.next_btn") }}</button>
             </div>
             <div class="declare">
                 <div class='declare_left'>{{ $t("Checkorder.warning_title") }}</div>

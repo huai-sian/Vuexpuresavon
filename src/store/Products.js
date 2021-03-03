@@ -46,7 +46,7 @@ export default {
 		},
 		getCurrentProduct(context, id) {
 			const vm = this
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
+      		const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
 			context.dispatch('updateLoading', true, { root: true })
 			axios.get(api).then((response) => {
 				if(!response.data.success){
@@ -82,14 +82,14 @@ export default {
 			state.currentPagenum= payload
 			state.pagination.current_page=state.currentPagenum
 			if (payload <= 1) {
-        state.pagination.has_pre = false
-      } else {
-        state.pagination.has_pre = true
-      }
-      if (payload >= state.pagination.total_pages) {
-        state.pagination.has_next = false
-      } else {
-        state.pagination.has_next = true
+        		state.pagination.has_pre = false
+			} else {
+				state.pagination.has_pre = true
+			}
+			if (payload >= state.pagination.total_pages) {
+				state.pagination.has_next = false
+			} else {
+				state.pagination.has_next = true
 			}
 			const startNum = (parseInt(state.currentPagenum, 10) - 1) * 8
 			const endNum = ((parseInt(state.currentPagenum, 10) - 1) * 8 + 8)

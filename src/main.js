@@ -62,6 +62,31 @@ extend('phone', {
   },
   message: '請輸入正確號碼'
 })
+extend('cardnum', {
+  validate: value =>{
+    const reg = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+    return reg.test(value);
+    },
+    message:"請輸入正確卡號"
+})
+extend('date', {
+  validate: value =>{
+    const MMYY=value.split('/');
+    const inputMon=MMYY[0];
+    const inputYear=MMYY[1];
+    const months=['01','02','03','04','05','06','07','08','09','10','11','12'];
+    const now=new Date();
+    const nowYear=now.getFullYear().toString();
+    if(months.indexOf(inputMon)<0){
+      return false
+    }else if(inputYear<nowYear.substring(2,4)){
+      return false
+    }else{
+      return true
+    }
+  },
+  message:"請輸入正確日期"
+})
 // 讓實體綁定dom
 new Vue({
   router,

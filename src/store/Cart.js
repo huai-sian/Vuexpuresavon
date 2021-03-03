@@ -74,7 +74,7 @@ export default {
           qty: item.qty
         }
         axios.post(api, { data: cartinfo}).then((response)=>{
-          if(!response.data.succes){
+          if(!response.data.success){
             context.dispatch('alertMessageModules/updateMessage', { message: '商品加入購物車失敗', status: 'danger'}, {root: true})
           }else{
             context.dispatch('alertMessageModules/updateMessage', { message: '商品已加入購物車', status: 'success'}, {root: true})

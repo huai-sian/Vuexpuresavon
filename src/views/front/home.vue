@@ -45,25 +45,25 @@
                         <span>All Series</span>
                     </h3>
                     <div class='row d-flex justify-content-center align-items-center series-group'>
-                        <div class='col-12 col-md-6 p-0'>
+                        <div class='col-12 col-sm-6 p-0'>
                             <div class="seriesItem" @click.prevent="$router.push({name:'Productlist',params:{series:'草本系列'}})">
                                 <img src="../../assets/images/nipanan-lifestyle-pV2xU2rP580-unsplash.jpg" alt="">
                                 <p>{{ $t("Series.series1") }}</p>
                             </div>
                         </div>
-                        <div class='col-12 col-md-6 p-0'>
+                        <div class='col-12 col-sm-6 p-0'>
                             <div class="seriesItem" @click.prevent="$router.push({name:'Productlist',params:{series:'甜蜜系列'}})">
                                 <img src="../../assets/images/vera-cho-10SLUJj6G6w-unsplash.jpg" alt="">
                                 <p>{{ $t("Series.series2") }}</p>
                             </div>
                         </div>
-                        <div class='col-12 col-md-6 p-0'>
+                        <div class='col-12 col-sm-6 p-0'>
                             <div class="seriesItem" @click.prevent="$router.push({name:'Productlist',params:{series:'果香系列'}})">
                                 <img src="../../assets/images/dose-juice-j_YWoV_uzRw-unsplash.jpg" alt="">
                                 <p>{{ $t("Series.series3") }}</p>
                             </div>
                         </div>
-                        <div class='col-12 col-md-6 p-0'>
+                        <div class='col-12 col-sm-6 p-0'>
                             <div class="seriesItem" @click.prevent="$router.push({name:'Productlist',params:{series:'經典系列'}})">
                                 <img src="../../assets/images/kelly-sikkema-hUuGUG9gdRg-unsplash.jpg" alt="">
                                 <p>{{ $t("Series.series4") }}</p>
